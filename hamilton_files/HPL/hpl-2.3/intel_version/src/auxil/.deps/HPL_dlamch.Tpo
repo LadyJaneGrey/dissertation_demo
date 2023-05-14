@@ -1,1 +1,0 @@
-auxil/HPL_dlamch.o: ../../src/auxil/HPL_dlamch.c /usr/include/stdc-predef.h
