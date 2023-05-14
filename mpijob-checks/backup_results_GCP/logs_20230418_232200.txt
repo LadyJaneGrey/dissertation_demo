@@ -1,0 +1,2 @@
+make[3]: Entering directory '/home/rohanjain_durham/rohan-jain/hpl-multi-files'
+kubectl logs pod/`kubectl get pods | grep hpl-mpi-launcher | awk '{print $1}'`

@@ -1,0 +1,22 @@
+
+Configurations Set: 
+  Node zones
+  us-central1-c -> and europe testing both configurations
+  Nodes
+  Image type
+  Container-Optimized OS with containerd (cos_containerd)
+  Machine type
+  c2-standard-60
+  Boot disk type
+  Balanced persistent disk
+  Boot disk size (per node)
+  100 GB
+  Boot disk encryption
+  Google-managed
+  Provisioning Model
+  Standard
+  Threads per core
+  1
+  Compact placement 
+  Disabled
+  

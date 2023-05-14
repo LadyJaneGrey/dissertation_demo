@@ -1,0 +1,8 @@
+gcc/11.2 conflicts with loaded module 'intel/2021.4'
+openmpi/4.1.1 conflicts with loaded module 'intelmpi/2021.6'
+openmpi/4.1.1(15):ERROR:102: Tcl command execution failed: flavours conflict -class mpi
+
+[mpiexec@cn065.ham8.dur.ac.uk] match_arg (../../../../../src/pm/i_hydra/libhydra/arg/hydra_arg.c:91): unrecognized argument allow-run-as-root
+[mpiexec@cn065.ham8.dur.ac.uk] HYD_arg_parse_array (../../../../../src/pm/i_hydra/libhydra/arg/hydra_arg.c:128): argument matching returned error
+[mpiexec@cn065.ham8.dur.ac.uk] mpiexec_get_parameters (../../../../../src/pm/i_hydra/mpiexec/mpiexec_params.c:1359): error parsing input array
+[mpiexec@cn065.ham8.dur.ac.uk] main (../../../../../src/pm/i_hydra/mpiexec/mpiexec.c:1783): error parsing parameters

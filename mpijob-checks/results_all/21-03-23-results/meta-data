@@ -1,0 +1,9 @@
+-> 1 Compute Instance 
+-> C2 Intel Cascade Lake CPU Platform 
+
+-> Theoretical Peak Per Core: 
+cores * sockets * instructionspersecond * clock_speed (cpu mhz)
+
+1 * 1 * 32 * 2.2 = 70.4 gflops as upper bound
+2.20
+

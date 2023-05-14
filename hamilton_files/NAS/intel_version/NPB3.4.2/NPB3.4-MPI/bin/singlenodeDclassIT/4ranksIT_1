@@ -1,0 +1,102 @@
+
+
+ NAS Parallel Benchmarks 3.4 -- IS Benchmark
+
+ Size:  2147483648  (class D)
+ Iterations:   10
+ Total number of processes:  4
+
+   iteration
+        1
+        2
+        3
+        4
+        5
+        6
+        7
+        8
+        9
+        10
+
+
+ IS Benchmark Completed
+ Class           =                        D
+ Size            =               2147483648
+ Iterations      =                       10
+ Time in seconds =                    20.80
+ Total processes =                        4
+ Active processes=                        4
+ Mop/s total     =                  1032.43
+ Mop/s/process   =                   258.11
+ Operation type  =              keys ranked
+ Verification    =               SUCCESSFUL
+ Version         =                    3.4.2
+ Compile date    =              07 May 2023
+
+ Compile options:
+    MPICC        = mpiicc
+    CLINK        = $(MPICC)
+    CMPI_LIB     = (none)
+    CMPI_INC     = (none)
+    CFLAGS       = -O3
+    CLINKFLAGS   = $(CFLAGS)
+
+
+ Please send feedbacks and/or the results of this run to:
+
+ NPB Development Team
+ npb@nas.nasa.gov
+
+
+#!/bin/bash 
+
+# -- Email Details
+
+#SBATCH --mail-user=rohan.jain@durham.ac.uk
+#SBATCH --mail-type=ALL
+
+
+# -- Processing Specs -- 
+
+# -N : number of nodes
+# -n : number of cores (this is intotal not just per core)
+# -c: number of mpi ranks per core (hardware threads?)
+# -ntasks-per-socket = 64 cores per socket
+
+# ---
+
+# -n: number of mpiranks 
+# -c: number of cores per mpirank
+# -N: number of Nodes
+
+
+
+
+
+#SBATCH -p multi
+#SBATCH -N 1
+#SBATCH -n 128
+#SBATCH -c 1
+#SBATCH -t 00:05:00
+#SBATCH --ntasks-per-socket=64
+#SBATCH -sockets-per-node=1
+#SBATCH --mem=0
+
+export OMP_NUM_THREADS=1
+# Filename
+#module load gcc/native openblas openmpi
+module load intel intelmpi
+
+
+export benchmarkname=is.D.x
+file_name=D_class_Benchmark_it_intel_4ranks_1nodes_IS_1socket
+backup_file_name=backup_results/filename_$(date '+%Y-%m-%d_%H-%M-%S').out
+
+# Running Command
+mpirun --bind-to core  -np 4 ./${benchmarkname} > ${file_name}
+
+cat ${file_name} nasintel.slm > ${backup_file_name}
+# cp ${file_name} ${backup_file_name}
+
+
+

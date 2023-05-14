@@ -1,0 +1,124 @@
+HPCG-Benchmark version: 3.0
+Release date: November 11, 2015
+Machine Summary: 
+  Distributed Processes: 64
+  Threads per processes: 2
+Global Problem Dimensions: 
+  Global nx: 320
+  Global ny: 320
+  Global nz: 320
+Processor Dimensions: 
+  npx: 4
+  npy: 4
+  npz: 4
+Local Domain Dimensions: 
+  nx: 80
+  ny: 80
+  nz: 80
+########## Problem Summary  ##########: 
+Setup Information: 
+  Setup Time: 3.52857
+Linear System Information: 
+  Number of Equations: 32768000
+  Number of Nonzero Terms: 879217912
+Multigrid Information: 
+  Number of coarse grid levels: 3
+  Coarse Grids: 
+    Grid Level: 1
+    Number of Equations: 4096000
+    Number of Nonzero Terms: 109215352
+    Number of Presmoother Steps: 1
+    Number of Postsmoother Steps: 1
+    Grid Level: 2
+    Number of Equations: 512000
+    Number of Nonzero Terms: 13481272
+    Number of Presmoother Steps: 1
+    Number of Postsmoother Steps: 1
+    Grid Level: 3
+    Number of Equations: 64000
+    Number of Nonzero Terms: 1643032
+    Number of Presmoother Steps: 1
+    Number of Postsmoother Steps: 1
+########## Memory Use Summary  ##########: 
+Memory Use Information: 
+  Total memory used for data (Gbytes): 23.4456
+  Memory used for OptimizeProblem data (Gbytes): 0
+  Bytes per equation (Total memory / Number of Equations): 715.503
+  Memory used for linear system and CG (Gbytes): 20.631
+  Coarse Grids: 
+    Grid Level: 1
+    Memory used: 2.46679
+    Grid Level: 2
+    Memory used: 0.309019
+    Grid Level: 3
+    Memory used: 0.0388074
+########## V&V Testing Summary  ##########: 
+Spectral Convergence Tests: 
+  Result: PASSED
+  Unpreconditioned: 
+    Maximum iteration count: 11
+    Expected iteration count: 12
+  Preconditioned: 
+    Maximum iteration count: 2
+    Expected iteration count: 2
+Departure from Symmetry |x'Ay-y'Ax|/(2*||x||*||A||*||y||)/epsilon: 
+  Result: PASSED
+  Departure for SpMV: 0
+  Departure for MG: 0
+########## Iterations Summary  ##########: 
+Iteration Count Information: 
+  Result: PASSED
+  Reference CG iterations per set: 50
+  Optimized CG iterations per set: 50
+  Total number of reference iterations: 50
+  Total number of optimized iterations: 50
+########## Reproducibility Summary  ##########: 
+Reproducibility Information: 
+  Result: PASSED
+  Scaled residual mean: 0.00544148
+  Scaled residual variance: 0
+########## Performance Summary (times in sec) ##########: 
+Benchmark Time Summary: 
+  Optimization phase: 2.49594e-07
+  DDOT: 14.6986
+  WAXPBY: 0.504947
+  SpMV: 5.18713
+  MG: 47.5522
+  Total: 67.9443
+Floating Point Operations Summary: 
+  Raw DDOT: 9.89594e+09
+  Raw WAXPBY: 9.89594e+09
+  Raw SpMV: 8.96802e+10
+  Raw MG: 5.01286e+11
+  Total: 6.10758e+11
+  Total with convergence overhead: 6.10758e+11
+GB/s Summary: 
+  Raw Read B/W: 55.3744
+  Raw Write B/W: 12.7967
+  Raw Total B/W: 68.1711
+  Total with convergence and optimization phase overhead: 67.8189
+GFLOP/s Summary: 
+  Raw DDOT: 0.673256
+  Raw WAXPBY: 19.598
+  Raw SpMV: 17.289
+  Raw MG: 10.5418
+  Raw Total: 8.98909
+  Total with convergence overhead: 8.98909
+  Total with convergence and optimization phase overhead: 8.94265
+User Optimization Overheads: 
+  Optimization phase time (sec): 2.49594e-07
+  Optimization phase time vs reference SpMV+MG time: 2.25518e-07
+DDOT Timing Variations: 
+  Min DDOT MPI_Allreduce time: 7.71671
+  Max DDOT MPI_Allreduce time: 13.4123
+  Avg DDOT MPI_Allreduce time: 10.3657
+__________ Final Summary __________: 
+  HPCG result is VALID with a GFLOP/s rating of: 8.94265
+      HPCG 2.4 Rating (for historical value) is: 8.98909
+  Reference version of ComputeDotProduct used: Performance results are most likely suboptimal
+  Reference version of ComputeSPMV used: Performance results are most likely suboptimal
+  Reference version of ComputeMG used and number of threads greater than 1: Performance results are severely suboptimal
+  Reference version of ComputeWAXPBY used: Performance results are most likely suboptimal
+  Results are valid but execution time (sec) is: 67.9443
+       You have selected the QuickPath option: Results are official for legacy installed systems with confirmation from the HPCG Benchmark leaders.
+       After confirmation please upload results from the YAML file contents to: http://hpcg-benchmark.org

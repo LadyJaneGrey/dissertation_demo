@@ -1,0 +1,7 @@
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 91 with PID 2715369 on node cn004 exited on signal 9 (Killed).
+--------------------------------------------------------------------------

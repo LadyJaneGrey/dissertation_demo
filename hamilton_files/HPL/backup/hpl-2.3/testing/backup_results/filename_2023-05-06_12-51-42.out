@@ -1,0 +1,87 @@
+#!/bin/bash 
+
+# -- Email Details
+
+#SBATCH --mail-user=rohan.jain@durham.ac.uk
+#SBATCH --mail-type=ALL
+
+
+# -- Processing Specs -- 
+
+# -N : number of nodes
+# -n : number of cores (this is intotal not just per core)
+# -c: number of mpi ranks per core (hardware threads?)
+# -ntasks-per-socket = 64 cores per socket
+
+# ---
+
+# -n: number of mpiranks 
+# -c: number of cores per mpirank
+# -N: number of Nodes
+
+
+
+
+
+#SBATCH -p multi
+#SBATCH -N 1
+#SBATCH -n 32
+#SBATCH -c 4
+#SBATCH -t 01:00:00
+#SBATCH --ntasks-per-socket=16
+#SBATCH --ntasks-per-node=32
+#SBATCH --mem=0
+
+export OMP_PROC_BIND=TRUE
+export OMP_PLACES=cores
+export OMP_NUM_THREADS=4
+
+
+# Filename
+module load gcc openblas openmpi
+file_name=1node32ranks4threads160k_binded.out
+backup_file_name=backup_results/filename_$(date '+%Y-%m-%d_%H-%M-%S').out
+
+
+# Running Command
+# mpirun --allow-run-as-root --map-by ppr:4:numa --report-bindings -np 128 ./xhpl > ${file_name}
+# mpirun --allow-run-as-root -np 128 --bind-to socket ./xhpl > ${file_name}
+mpirun --allow-run-as-root --bind-to socket --map-by ppr:2:numa --report-bindings -np 32 ./xhpl > ${file_name}
+
+cat temp.slm HPL.dat ${file_name} > ${backup_file_name}
+
+# cp ${file_name} ${backup_file_name}
+
+
+HPLinpack benchmark input file
+Innovative Computing Laboratory, University of Tennessee
+HPL.out      output file name (if any) 
+6            device out (6=stdout,7=stderr,file)
+1            # of problems sizes (N)
+160000	     Ns
+3            # of NBs
+192	222	252          NBs
+0            PMAP process mapping (0=Row-,1=Column-major)
+1            # of process grids (P x Q)
+4				Ps
+8				Qs
+16.0         threshold
+1            # of panel fact
+2            PFACTs (0=left, 1=Crout, 2=Right)
+1            # of recursive stopping criterium
+4            NBMINs (>= 1)
+1            # of panels in recursion
+2            NDIVs
+1            # of recursive panel fact.
+1            RFACTs (0=left, 1=Crout, 2=Right)
+1            # of broadcast
+1            BCASTs (0=1rg,1=1rM,2=2rg,3=2rM,4=Lng,5=LnM)
+1            # of lookahead depth
+1            DEPTHs (>=0)
+2            SWAP (0=bin-exch,1=long,2=mix)
+64           swapping threshold
+0            L1 in (0=transposed,1=no-transposed) form
+0            U  in (0=transposed,1=no-transposed) form
+1            Equilibration (0=no,1=yes)
+8            memory alignment in double (> 0)
+

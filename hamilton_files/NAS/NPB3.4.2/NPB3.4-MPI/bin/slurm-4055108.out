@@ -1,0 +1,8 @@
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 98 with PID 348796 on node cn096 exited on signal 9 (Killed).
+--------------------------------------------------------------------------
+slurmstepd: error: Detected 2 oom-kill event(s) in StepId=4055108.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.

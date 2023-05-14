@@ -1,0 +1,118 @@
+kubectl logs pod/`kubectl get pods | grep hpl-mpi-launcher | awk '{print $1}'`
+Warning: Permanently added 'hpl-mpi-worker-2.hpl-mpi-worker.default.svc,10.4.2.5' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'hpl-mpi-worker-0.hpl-mpi-worker.default.svc,10.4.3.4' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'hpl-mpi-worker-3.hpl-mpi-worker.default.svc,10.4.6.5' (ECDSA) to the list of known hosts.
+Warning: Permanently added 'hpl-mpi-worker-1.hpl-mpi-worker.default.svc,10.4.5.4' (ECDSA) to the list of known hosts.
+================================================================================
+HPLinpack 2.3  --  High-Performance Linpack benchmark  --   December 2, 2018
+Written by A. Petitet and R. Clint Whaley,  Innovative Computing Laboratory, UTK
+Modified by Piotr Luszczek, Innovative Computing Laboratory, UTK
+Modified by Julien Langou, University of Colorado Denver
+================================================================================
+
+An explanation of the input/output parameters follows:
+T/V    : Wall time / encoded variant.
+N      : The order of the coefficient matrix A.
+NB     : The partitioning blocking factor.
+P      : The number of process rows.
+Q      : The number of process columns.
+Time   : Time in seconds to solve the linear system.
+Gflops : Rate of execution for solving the linear system.
+
+The following parameter values will be used:
+
+N      :    1000    50000 
+NB     :     192 
+PMAP   : Row-major process mapping
+P      :       1        2        2 
+Q      :      16        8        4 
+PFACT  :   Right 
+NBMIN  :       4 
+NDIV   :       2 
+RFACT  :   Crout 
+BCAST  :  1ringM 
+DEPTH  :       1 
+SWAP   : Mix (threshold = 64)
+L1     : transposed form
+U      : transposed form
+EQUIL  : yes
+ALIGN  : 8 double precision words
+
+--------------------------------------------------------------------------------
+
+- The matrix A is randomly generated for each test.
+- The following scaled residual check will be computed:
+      ||Ax-b||_oo / ( eps * ( || x ||_oo * || A ||_oo + || b ||_oo ) * N )
+- The relative machine precision (eps) is taken to be               1.110223e-16
+- Computational tests pass if scaled residuals are less than                16.0
+
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4        1000   192     1    16               0.26             2.5295e+00
+HPL_pdgesv() start time Fri Mar 17 17:34:47 2023
+
+HPL_pdgesv() end time   Fri Mar 17 17:34:48 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   4.38705938e-03 ...... PASSED
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4       50000   192     1    16             383.96             2.1705e+02
+HPL_pdgesv() start time Fri Mar 17 17:34:55 2023
+
+HPL_pdgesv() end time   Fri Mar 17 17:41:19 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   1.11837529e-03 ...... PASSED
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4        1000   192     2     8               1.22             5.4951e-01
+HPL_pdgesv() start time Fri Mar 17 17:41:27 2023
+
+HPL_pdgesv() end time   Fri Mar 17 17:41:28 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   4.51577506e-03 ...... PASSED
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4       50000   192     2     8             506.17             1.6464e+02
+HPL_pdgesv() start time Fri Mar 17 17:41:35 2023
+
+HPL_pdgesv() end time   Fri Mar 17 17:50:01 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   1.22067591e-03 ...... PASSED
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4        1000   192     2     4               1.64             4.0836e-01
+HPL_pdgesv() start time Fri Mar 17 17:50:09 2023
+
+HPL_pdgesv() end time   Fri Mar 17 17:50:11 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   4.08672280e-03 ...... PASSED
+================================================================================
+T/V                N    NB     P     Q               Time                 Gflops
+--------------------------------------------------------------------------------
+WR11C2R4       50000   192     2     4             811.00             1.0276e+02
+HPL_pdgesv() start time Fri Mar 17 17:50:26 2023
+
+HPL_pdgesv() end time   Fri Mar 17 18:03:57 2023
+
+--------------------------------------------------------------------------------
+||Ax-b||_oo/(eps*(||A||_oo*||x||_oo+||b||_oo)*N)=   1.88126882e-03 ...... PASSED
+================================================================================
+
+Finished      6 tests with the following results:
+              6 tests completed and passed residual checks,
+              0 tests completed and failed residual checks,
+              0 tests skipped because of illegal input values.
+--------------------------------------------------------------------------------
+
+End of Tests.
+================================================================================

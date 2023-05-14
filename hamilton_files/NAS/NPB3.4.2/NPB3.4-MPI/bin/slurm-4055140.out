@@ -1,0 +1,40 @@
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+[cn004:2723221:0:2723221]      cma_ep.c:97   process_vm_readv(pid=2723218 length=524288) returned -1: No such process
+==== backtrace (tid:2723221) ====
+ 0 0x0000000000062f68 kh_put_ucs_log_filter()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucs/debug/log.c:55
+ 1 0x00000000000026bc uct_cma_ep_tx()  /tmp/tmpvs613vm4/ucx-1.11.2/src/uct/sm/scopy/cma/cma_ep.c:95
+ 2 0x000000000001c7e3 uct_scopy_ep_progress_tx()  /tmp/tmpvs613vm4/ucx-1.11.2/src/uct/sm/scopy/base/scopy_ep.c:151
+ 3 0x0000000000054682 ucs_arbiter_dispatch_nonempty()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucs/datastruct/arbiter.c:321
+ 4 0x000000000001c1c9 ucs_arbiter_dispatch()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucs/datastruct/arbiter.h:386
+ 5 0x0000000000055de2 ucs_callbackq_slow_proxy()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucs/datastruct/callbackq.c:402
+ 6 0x0000000000040cda ucs_callbackq_dispatch()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucs/datastruct/callbackq.h:211
+ 7 0x0000000000040cda uct_worker_progress()  /tmp/tmpvs613vm4/ucx-1.11.2/src/uct/api/uct.h:2592
+ 8 0x0000000000040cda ucp_worker_progress()  /tmp/tmpvs613vm4/ucx-1.11.2/src/ucp/core/ucp_worker.c:2455
+ 9 0x00000000000059ed mca_pml_ucx_send()  ???:0
+10 0x00000000000a81e3 ompi_coll_base_sendrecv_actual()  ???:0
+11 0x00000000000ac180 ompi_coll_base_alltoall_intra_pairwise()  ???:0
+12 0x000000000000580d ompi_coll_tuned_alltoall_intra_dec_fixed()  ???:0
+13 0x00000000000654c2 MPI_Alltoall()  ???:0
+14 0x000000000004712e pmpi_alltoall_()  ???:0
+15 0x0000000000403c7c transpose_x_yz_()  ???:0
+16 0x0000000000406145 fft_()  ???:0
+17 0x0000000000407c6d MAIN__()  ft.f90:0
+18 0x000000000040142d main()  ???:0
+19 0x000000000003acf3 __libc_start_main()  ???:0
+20 0x000000000040146e _start()  ???:0
+=================================
+
+Program received signal SIGABRT: Process abort signal.
+
+Backtrace for this error:
+#0  0x7f2419651171 in ???
+#1  0x7f2419650313 in ???
+#2  0x7f24188c0b1f in ???
+#3  0x7f24188c0a9f in ???
+#4  0x7f2418893e04 in ???
+--------------------------------------------------------------------------
+mpirun noticed that process rank 32 with PID 0 on node cn004 exited on signal 9 (Killed).
+--------------------------------------------------------------------------

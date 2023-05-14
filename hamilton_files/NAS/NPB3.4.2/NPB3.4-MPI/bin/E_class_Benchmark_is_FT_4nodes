@@ -1,0 +1,13 @@
+
+
+ NAS Parallel Benchmarks 3.4 -- FT Benchmark
+
+ No input file inputft.data. Using compiled defaults
+ Size                : 4096x2048x2048  (class E)
+ Iterations          :             25
+ Number of processes :            512
+ Processor array     :         1x 512
+ Layout type         :             1D
+
+ Initialization time =     25.6849
+

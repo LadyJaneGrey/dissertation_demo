@@ -1,0 +1,48 @@
+#!/bin/bash 
+
+# -- Email Details
+
+#SBATCH --mail-user=rohan.jain@durham.ac.uk
+#SBATCH --mail-type=ALL
+
+
+# -- Processing Specs -- 
+
+# -N : number of nodes
+# -n : number of cores (this is intotal not just per core)
+# -c: number of mpi ranks per core (hardware threads?)
+# -ntasks-per-socket = 64 cores per socket
+
+# ---
+
+# -n: number of mpiranks 
+# -c: number of cores per mpirank
+# -N: number of Nodes
+
+# Benchmark Running is 32 processors no openmp gcc e class ft
+
+
+
+#SBATCH -p multi
+#SBATCH -N 1
+#SBATCH -n 128
+#SBATCH -c 1
+#SBATCH -t 00:30:00
+#SBATCH --ntasks-per-socket=64
+#SBATCH --mem=0
+
+export OMP_NUM_THREADS=1
+# Filename
+module load gcc/native openblas openmpi
+export benchmarkname=ft.E.x
+file_name=E_class_Benchmark_ft_32
+backup_file_name=backup_results/filename_$(date '+%Y-%m-%d_%H-%M-%S').out
+
+# Running Command
+mpirun --bind-to core --map-by numa -np 32 ./${benchmarkname} > ${file_name}
+
+cat ${file_name} nas_gcc_jobscript.slm > ${backup_file_name}
+# cp ${file_name} ${backup_file_name}
+
+
+
