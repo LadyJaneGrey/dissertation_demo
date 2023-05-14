@@ -1,0 +1,29 @@
+#!/bin/bash 
+
+# -- Email Details
+
+#SBATCH --mail-user=rohan.jain@durham.ac.uk
+#SBATCH --mail-type=ALL
+
+
+# -- Processing Specs -- 
+
+# -N : number of nodes
+# -n : number of cores (this is intotal not just per core)
+# -c: number of mpi ranks per core (hardware threads?)
+# -ntasks-per-socket = 64 cores per socket
+
+
+#SBATCH -p multi
+#SBATCH -N 1
+#SBATCH -n 2
+#SBATCH -c 64
+#SBATCH -t 00:30:00
+#SBATCH --ntasks-per-socket=1
+#SBATCH --mem=245GB
+
+
+OMP_NUM_THREADS=64 mpirun -np 2 --bind-to socket ./xhpcg > hpcg_gflops.out
+
+
+

@@ -1,0 +1,49 @@
+#!/bin/bash 
+
+# -- Email Details
+
+#SBATCH --mail-user=rohan.jain@durham.ac.uk
+#SBATCH --mail-type=ALL
+
+
+# -- Processing Specs -- 
+
+# -N : number of nodes
+# -n : number of cores (this is intotal not just per core)
+# -c: number of mpi ranks per core (hardware threads?)
+# -ntasks-per-socket = 64 cores per socket
+
+# ---
+
+# -n: number of mpiranks 
+# -c: number of cores per mpirank
+# -N: number of Nodes
+
+
+
+
+
+#SBATCH -p multi
+#SBATCH -N 1
+#SBATCH -n 64
+#SBATCH -c 2
+#SBATCH -t 00:20:00
+#SBATCH --ntasks-per-socket=32
+#SBATCH --mem=0
+
+# Filename
+# module load gcc openblas openmpi
+export OMP_NUM_THREADS=2
+module load intel openblas intelmpi
+
+file_name=hpcg-core128Node1_4threads.out
+backup_file_name=backup_results/filename_$(date '+%Y-%m-%d_%H-%M-%S').out
+
+# Running Command
+# mpirun  --bind-to core  -np 64 ./xhpcg
+mpirun  --bind-to core  -np 64 ./xhpcg
+
+# cp ${file_name} ${backup_file_name}
+
+
+

@@ -1,0 +1,59 @@
+
+apiVersion: kubeflow.org/v2beta1
+kind: MPIJob
+metadata:
+  name: hpl-mpi
+spec:
+  slotsPerWorker: 3
+  runPolicy:
+    cleanPodPolicy: Running
+  mpiReplicaSpecs:
+    Launcher:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - image: ghcr.io/crambor/hpl:v0.2.1
+            env:
+              - name: OMP_NUM_THREADS
+                value: "1"
+              - name: OMP_PROC_BIND
+                value: "TRUE"
+              - name: OMP_PLACES
+                value: "cores"
+
+
+            name: hpl
+            command: ["/bin/bash","-c", "cat HPL.dat && mpirun --allow-run-as-root --bind-to core -np 3 ./xhpl"]
+            # command:
+            # - mpirun
+            # args:
+            # - --allow-run-as-root
+            # - --bind-to-core
+            # - -np
+            # - "3"
+            # - ./xhpl
+
+    Worker:
+      replicas: 1
+      template:
+        spec:
+          containers:
+          - image: ghcr.io/crambor/hpl:v0.2.1
+            name: hpl
+            volumeMounts:
+            - name: "config"
+              mountPath: "/home/mpiuser/hpl/testing/HPL.dat"
+              subPath: "HPL.dat"
+    
+            resources:
+              requests:
+                cpu: 3
+              limits:
+                cpu: 3
+                memory: 10Gi
+
+          volumes:
+          - name: "config"
+            configMap:
+              name: "config"
